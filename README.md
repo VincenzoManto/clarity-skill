@@ -53,7 +53,7 @@ New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\clarity-s
 ### Option B — install as a Claude Code plugin
 
 ```
-/plugin marketplace add <your-username>/clarity-skill
+/plugin marketplace add VincenzoManto/clarity-skill
 /plugin install clarity-skill
 ```
 
