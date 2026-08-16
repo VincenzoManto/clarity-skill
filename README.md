@@ -37,12 +37,12 @@ If this is useful, a ⭐ on the repo helps other people find it.
 
 Project-scoped (only this project):
 ```powershell
-git clone https://github.com/<your-username>/clarity-skill "<project>\.claude\skills\clarity-skill"
+git clone https://github.com/VincenzoManto/clarity-skill "<project>\.claude\skills\clarity-skill"
 ```
 
 User-scoped (all your projects):
 ```powershell
-git clone https://github.com/<your-username>/clarity-skill "$env:USERPROFILE\.claude\skills\clarity-skill"
+git clone https://github.com/VincenzoManto/clarity-skill "$env:USERPROFILE\.claude\skills\clarity-skill"
 ```
 
 Or symlink instead of cloning, if you want local edits to apply everywhere:
