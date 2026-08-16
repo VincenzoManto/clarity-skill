@@ -1,0 +1,25 @@
+{
+  "name": "clarity-skill",
+  "version": "0.1.0",
+  "description": "Claude Code skill that reads Microsoft Clarity aggregated metrics and per-session event data to recommend performance, UX and UI improvements.",
+  "type": "module",
+  "bin": {
+    "clarity-fetch": "./scripts/fetch-clarity.js",
+    "clarity-analyze": "./scripts/analyze.js"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts",
+    "references"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skill",
+    "microsoft-clarity",
+    "ux",
+    "performance",
+    "analytics"
+  ],
+  "license": "MIT"
+}

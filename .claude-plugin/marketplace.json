@@ -1,0 +1,13 @@
+{
+  "name": "clarity-skill",
+  "owner": {
+    "name": "Vincenzo Manto"
+  },
+  "plugins": [
+    {
+      "name": "clarity-skill",
+      "source": "./",
+      "description": "Reads Microsoft Clarity aggregated metrics and per-session event data to recommend performance, UX and UI improvements."
+    }
+  ]
+}
