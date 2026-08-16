@@ -37,12 +37,12 @@ If this is useful, a ⭐ on the repo helps other people find it.
 
 Project-scoped (only this project):
 ```powershell
-git clone https://github.com/<your-username>/clarity-skill "<project>\.claude\skills\clarity-skill"
+git clone https://github.com/VincenzoManto/clarity-skill "<project>\.claude\skills\clarity-skill"
 ```
 
 User-scoped (all your projects):
 ```powershell
-git clone https://github.com/<your-username>/clarity-skill "$env:USERPROFILE\.claude\skills\clarity-skill"
+git clone https://github.com/VincenzoManto/clarity-skill "$env:USERPROFILE\.claude\skills\clarity-skill"
 ```
 
 Or symlink instead of cloning, if you want local edits to apply everywhere:
@@ -53,7 +53,7 @@ New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\clarity-s
 ### Option B — install as a Claude Code plugin
 
 ```
-/plugin marketplace add <your-username>/clarity-skill
+/plugin marketplace add VincenzoManto/clarity-skill
 /plugin install clarity-skill
 ```
 
@@ -71,8 +71,9 @@ $env:CLARITY_API_TOKEN = "your-token-here"
 
 Just ask Claude Code something like:
 
-> "Analizza i dati di Clarity dell'ultima settimana e proponi fix UX"
-> "Usa clarity-skill per capire perché la pagina checkout ha tanti rage click"
+> "Analize Clarity data of the last week and propose UX fixes"
+> 
+> "Use clarity-skill to understand why the checkout page has rage click"
 
 Claude will run the scripts, analyze the results, and walk you through
 findings + fixes. You can also run the scripts directly:
