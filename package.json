@@ -5,7 +5,8 @@
   "type": "module",
   "bin": {
     "clarity-fetch": "./scripts/fetch-clarity.js",
-    "clarity-analyze": "./scripts/analyze.js"
+    "clarity-analyze": "./scripts/analyze.js",
+    "clarity-dashboard": "./scripts/generate-dashboard.js"
   },
   "files": [
     "SKILL.md",

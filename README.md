@@ -79,8 +79,13 @@ findings + fixes. You can also run the scripts directly:
 
 ```powershell
 node scripts/fetch-clarity.js --days 3 --dim1 URL --dim2 Device
-node scripts/analyze.js
+node scripts/analyze.js > analysis.json
+node scripts/generate-dashboard.js --input analysis.json --open
 ```
+
+The last command opens a self-contained, offline HTML dashboard in your
+default browser — top findings, severity-ranked bars per segment, and (if
+you supplied a session/event export) a per-page rage/dead-click/error table.
 
 ## Files
 

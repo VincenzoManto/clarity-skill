@@ -70,11 +70,18 @@ report.
    - **Report (always):** a short markdown/chat summary — top issues ranked
      by impact (traffic-weighted), which URL/device/browser segment each hits,
      and the concrete fix per issue.
-   - **Dashboard (when useful):** load the `dataviz` skill, then build and
-     publish an HTML page via the `Artifact` tool charting the flagged
-     metrics per page/segment (bar/heatmap of rage/dead clicks by URL,
-     scroll-depth funnel, etc.) — don't fabricate data outside what
-     `analyze.js` produced.
+   - **Interactive dashboard (always, when there are findings):** generate
+     and open it locally:
+     ```
+     node scripts/analyze.js > analysis.json
+     node scripts/generate-dashboard.js --input analysis.json --out clarity-dashboard.html --open
+     ```
+     `--open` launches the file in the user's default browser (Windows/macOS/
+     Linux). The HTML is self-contained (no CDN), theme-aware, and charts
+     only what `analyze.js` actually produced — never fabricate data. If the
+     user is working inside a Claude Code chat session and wants a shareable
+     link instead of/in addition to the local file, also load the `dataviz`
+     skill and publish the same data via the `Artifact` tool.
    - **Code changes (when a codebase is present):** for each finding, locate
      the relevant component/page (Grep/Glob for the URL path or page title in
      the connected repo) and propose or apply the fix — e.g. a dead-click
@@ -90,6 +97,8 @@ report.
   responses to `.clarity-cache/`.
 - `scripts/analyze.js` — merges cached aggregated data (+ optional session
   events) into ranked findings.
+- `scripts/generate-dashboard.js` — renders `analyze.js`'s output as a
+  self-contained, theme-aware HTML dashboard and can open it in the browser.
 - `references/clarity-api.md` — endpoint, auth, params, response fields,
   rate limits.
 - `references/metrics-guide.md` — what each metric means and the thresholds
