@@ -1,10 +1,20 @@
 # clarity-skill
 
-A [Claude Code](https://claude.com/claude-code) skill that reads Microsoft
-Clarity data — aggregated project metrics via the official Data Export API,
-plus optional per-session/event exports — and turns it into prioritized
-performance/UX/UI findings, a visual dashboard, and concrete code fixes in
-your connected app.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-5A45FF)](https://claude.com/claude-code)
+[![GitHub stars](https://img.shields.io/github/stars/VincenzoManto/clarity-skill?style=social)](https://github.com/VincenzoManto/clarity-skill/stargazers)
+
+Point [Claude Code](https://claude.com/claude-code) at your [Microsoft
+Clarity](https://clarity.microsoft.com) project and get back ranked,
+actionable UX/performance/UI fixes — not just a metrics dump.
+
+It pulls aggregated metrics from the official Data Export API (rage clicks,
+dead clicks, script errors, excessive scroll, quickback, scroll depth,
+engagement time), optionally merges per-session/event exports, ranks the
+findings by traffic-weighted severity, and — when run inside your codebase —
+proposes or applies the actual fix.
+
+If this is useful, a ⭐ on the repo helps other people find it.
 
 ## What it does
 

@@ -15,11 +15,30 @@
   "keywords": [
     "claude",
     "claude-code",
+    "claude-skill",
+    "claude-plugin",
     "skill",
     "microsoft-clarity",
+    "clarity",
     "ux",
+    "ux-research",
     "performance",
-    "analytics"
+    "web-analytics",
+    "heatmap",
+    "session-recording",
+    "rage-click",
+    "ai-agent"
   ],
-  "license": "MIT"
+  "author": {
+    "name": "Vincenzo Manto"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VincenzoManto/clarity-skill.git"
+  },
+  "homepage": "https://github.com/VincenzoManto/clarity-skill",
+  "bugs": {
+    "url": "https://github.com/VincenzoManto/clarity-skill/issues"
+  }
 }
