@@ -71,8 +71,9 @@ $env:CLARITY_API_TOKEN = "your-token-here"
 
 Just ask Claude Code something like:
 
-> "Analizza i dati di Clarity dell'ultima settimana e proponi fix UX"
-> "Usa clarity-skill per capire perché la pagina checkout ha tanti rage click"
+> "Analize Clarity data of the last week and propose UX fixes"
+> 
+> "Use clarity-skill to understand why the checkout page has rage click"
 
 Claude will run the scripts, analyze the results, and walk you through
 findings + fixes. You can also run the scripts directly:
