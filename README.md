@@ -101,14 +101,29 @@ you supplied a session/event export) a per-page rage/dead-click/error table.
 - `references/session-event-format.md` — expected shape for optional
   per-session/event export files.
 
-## Limitations
+## Reading individual session recordings
 
 Microsoft Clarity's public API only exposes **aggregated** metrics for the
-**last 1–3 days**, rate-limited to **10 requests/day/project**. It does not
-expose individual session recordings or raw event streams — that data only
-exists in the Clarity dashboard UI. This skill treats session/event-level
-analysis as an optional input you supply, not something it can fetch on its
-own.
+**last 1–3 days**, rate-limited to **10 requests/day/project** — it does not
+expose individual session recordings or raw event streams. To read those,
+this skill can drive a real browser against your own Clarity dashboard:
+
+```powershell
+npm install playwright
+npx playwright install chromium
+node scripts/clarity-login.js                 # one-time, log in manually
+node scripts/scrape-sessions.js --project <projectId> --limit 30 --out sessions.json
+node scripts/analyze.js --events sessions.json
+```
+
+This is DOM automation against an undocumented, changeable UI — it captures
+session metadata and rage/dead-click/error markers, not raw mouse-movement
+replay data, and the CSS selectors it relies on **will** break whenever
+Microsoft changes the dashboard markup (see the header of
+`scripts/scrape-sessions.js`). It's your responsibility to confirm this use
+stays within Clarity's Terms of Service for your account. Alternatively,
+skip the automation entirely and pass in any session/event export you
+already have — see `references/session-event-format.md`.
 
 ## License
 

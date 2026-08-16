@@ -16,14 +16,23 @@ tiers, one pipeline:
    Source, Medium, Campaign, Channel).
 2. **Per-session / per-event data** — Clarity does **not** expose raw session
    recordings or event streams through a public API; that data only lives in
-   the dashboard UI. If the user has exported session/event data some other
-   way (a manual export, a custom snippet, a saved JSON from the dashboard),
-   ingest it as a secondary, optional input — never assume it exists.
+   the dashboard UI. Two ways to get it into the pipeline:
+   - The user hands you an export (manual export, custom snippet, saved
+     JSON) — ingest it as documented in `references/session-event-format.md`.
+   - Or use `scripts/clarity-login.js` + `scripts/scrape-sessions.js`, which
+     drive a real browser against the user's own Clarity dashboard to read
+     session metadata and rage/dead-click/error markers from the Recordings
+     UI. This is DOM automation against an undocumented, changeable UI —
+     **fragile by nature** (selectors break on any Clarity redesign) and it
+     is the user's responsibility to confirm this stays within Clarity's
+     Terms of Service for their use case. It captures session metadata and
+     flagged-event markers, not raw mouse-movement replay data (Clarity
+     renders that as a reconstructed player, not structured data).
 
 Do not silently pretend tier 2 data is available. If the user asks for
-"le sessioni singole" and only the aggregated API is configured, say so and
-ask for the export file, or proceed with tier 1 only and note the gap in the
-report.
+"le sessioni singole" and neither an export nor a working scrape is in
+place, say so and offer the two options above, or proceed with tier 1 only
+and note the gap in the report.
 
 ## Workflow
 
@@ -47,14 +56,30 @@ report.
      `scripts/fetch-clarity.js` / `references/clarity-api.md` accordingly, the
      API has changed before.
 
-3. **Optionally ingest per-session/event data.** If the user provides an
-   export file, pass it to the analyzer:
-   ```
-   node scripts/analyze.js --events path/to/sessions.json
-   ```
-   Expected shape is documented in `references/session-event-format.md` — if
-   the user's export doesn't match, adapt the parser rather than asking them
-   to reshape their data.
+3. **Optionally bring in per-session/event data**, either path:
+   - **User-supplied export:** pass it straight to the analyzer:
+     ```
+     node scripts/analyze.js --events path/to/sessions.json
+     ```
+     Expected shape is documented in `references/session-event-format.md` —
+     if the user's export doesn't match, adapt the parser rather than asking
+     them to reshape their data.
+   - **Scrape it from their own dashboard:**
+     ```
+     node scripts/clarity-login.js
+     ```
+     (one-time; opens a real browser, the user logs in manually, session is
+     saved to `.clarity-cache/auth-state.json`, gitignored). Then:
+     ```
+     node scripts/scrape-sessions.js --project <projectId> --limit 30 --out sessions.json
+     node scripts/analyze.js --events sessions.json
+     ```
+     `<projectId>` is the segment in the user's Clarity dashboard URL:
+     `clarity.microsoft.com/projects/view/<projectId>/...`. If
+     `scrape-sessions.js` reports 0 matched rows, the dashboard markup has
+     likely changed — inspect the live Recordings page and update the
+     `SELECTORS` block at the top of that script before trying again; don't
+     guess blindly.
 
 4. **Analyze.** Run:
    ```
@@ -99,6 +124,11 @@ report.
   events) into ranked findings.
 - `scripts/generate-dashboard.js` — renders `analyze.js`'s output as a
   self-contained, theme-aware HTML dashboard and can open it in the browser.
+- `scripts/clarity-login.js` — one-time interactive login against the
+  user's own Clarity dashboard, saves an authenticated session locally.
+- `scripts/scrape-sessions.js` — reads session metadata and rage/dead-click/
+  error markers from the Recordings UI using the saved login; best-effort,
+  documented as fragile (see file header).
 - `references/clarity-api.md` — endpoint, auth, params, response fields,
   rate limits.
 - `references/metrics-guide.md` — what each metric means and the thresholds

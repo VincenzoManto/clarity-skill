@@ -1,9 +1,11 @@
 # Optional per-session/event export format
 
 Microsoft Clarity does not expose session recordings or raw event streams
-through a public API — this tier is optional and only used if the user
-supplies it. `scripts/analyze.js --events <file>` expects (and will try to
-adapt to close variants of) this shape:
+through a public API — this tier is optional. It's populated either by the
+user handing you an export, or by `scripts/scrape-sessions.js` (browser
+automation against the user's own dashboard — see `SKILL.md` for the
+fragility/ToS caveats). `scripts/analyze.js --events <file>` expects (and
+will try to adapt to close variants of) this shape:
 
 ```json
 {

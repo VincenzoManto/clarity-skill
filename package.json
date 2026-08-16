@@ -6,7 +6,12 @@
   "bin": {
     "clarity-fetch": "./scripts/fetch-clarity.js",
     "clarity-analyze": "./scripts/analyze.js",
-    "clarity-dashboard": "./scripts/generate-dashboard.js"
+    "clarity-dashboard": "./scripts/generate-dashboard.js",
+    "clarity-login": "./scripts/clarity-login.js",
+    "clarity-scrape-sessions": "./scripts/scrape-sessions.js"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.47.0"
   },
   "files": [
     "SKILL.md",
